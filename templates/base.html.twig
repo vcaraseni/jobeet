@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+    <div>
+        <a href="{{ path('micro_post_index') }}">Micro Post app</a>
+        <div>
+            <ul>
+                {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a href="{{ path('micro_post_add') }}">Add new</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div>
+            <ul>
+                {% if is_granted('ROLE_USER') %}
+                <li>
+                    <a href="#">{{ app.user.fullName }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('security_logout') }}">Sign out</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{{ path('security_login') }}">Sign in</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin: 0 auto;width: 377px;">
+        {% block body %}{% endblock %}
+    </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

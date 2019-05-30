@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for message in app.flashes('notice') %}
+        <div style="color: darkred">{{ message }}</div>
+    {% endfor %}
+
+    {% if usersToFollow|length > 0 %}
+        <p>You currently do not follow anyone, you might find these users interesting: </p>
+        {% for userToFollow in usersToFollow %}
+            <a href="{{ path('following_follow', {'id' : userToFollow.id}) }}">@{{ userToFollow.username }}</a>
+        {% endfor %}
+    {% else %}
+
+        <small style="float:right"><a href="{{ path('micro_post_add') }}">Add</a></small>
+        {% for post in posts %}
+            <div>
+                {% include 'micro-post/post.html.twig' %}
+
+                {% if is_granted('edit', post) %}
+                    <small style="float:right"><a href="{{ path('micro_post_edit', {'id': post.id}) }}">Edit</a></small>
+                {% endif %}
+                <br>
+                {% if is_granted('delete', post) %}
+                    <small style="float:right"><a href="{{ path('micro_post_delete', {'id': post.id}) }}">Remove</a></small>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <hr>
+        <div>
+            <h4>
+                {{ user.fullName }}
+                <small>@{{ user.username }}</small>
+            </h4>
+
+            {% if is_granted('ROLE_USER') and user != app.user %}
+
+                {% if user.followers.contains(app.user) == false %}
+                    <a href="{{ path('following_follow', {'id': user.id }) }}">Follow</a>
+                {% else %}
+                    <a href="{{ path('following_unfollow', {'id': user.id }) }}">Unfollow</a>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+        <hr>
+        <div>
+            <p>Followers</p>
+            <h4>
+                {% for folower in user.followers %}
+                    <small>@{{ folower.username }} |</small>
+                {% endfor %}
+            </h4>
+        </div>
+        <div>
+            <p>Following</p>
+            <h4>
+                {% for folower in user.following %}
+                    <small>@{{ folower.username }} |</small>
+                {% endfor %}
+            </h4>
+        </div>
+
+    <hr>
+
+    {% for post in posts %}
+        <div>
+            {% include 'micro-post/post.html.twig' %}
+
+            {% if is_granted('edit', post) %}
+                <small style="float:right"><a href="{{ path('micro_post_edit', {'id': post.id}) }}">Edit</a></small>
+            {% endif %}
+            <br>
+            {% if is_granted('delete', post) %}
+                <small style="float:right"><a href="{{ path('micro_post_delete', {'id': post.id}) }}">Remove</a></small>
+            {% endif %}
+            <hr>
+        </div>
+    {% endfor %}
+
+{% endblock %}
