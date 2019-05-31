@@ -22,6 +22,11 @@
         <div>
             <ul>
                 {% if is_granted('ROLE_USER') %}
+                <li class="nav-item text-nowrap">
+                    <a class="">Notifications
+                        <span id="notification-count"><i class="fa fa-circle fa-circle-o-notch fa-spin"></i></span>
+                    </a>
+                </li>
                 <li>
                     <a href="#">{{ app.user.fullName }}</a>
                 </li>
@@ -39,6 +44,26 @@
     <div style="margin: 0 auto;width: 377px;">
         {% block body %}{% endblock %}
     </div>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {% if is_granted('ROLE_USER') %}
+                <script>
+                    function fetchNotificationCount() {
+                        fetch(
+                            '{{ path('notification_unread') }}',
+                            { 'credentials' : 'include' }
+                        ).then(function (response) {
+                            response.json().then(function () {
+                                document.getElementById('notification-count').innerText = json.count;
+                                setTimeout(fetchNotificationCount, 5000);
+                            });
+                        }).catch(function () {
+
+                        });
+                    }
+
+                    fetchNotificationCount();
+                </script>
+            {% endif %}
+        {% endblock %}
     </body>
 </html>
