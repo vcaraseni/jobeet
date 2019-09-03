@@ -4,8 +4,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Event\UserRegisterEvent;
 use App\Form\UserType;
+use App\Security\TokenGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +21,19 @@ class RegisterController extends Controller
      *
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param Request $request
+     * @param EventDispatcherInterface $dispatcher
+     * @param TokenGenerator $tokenGenerator
+     *
+     * @throws \Exception
      *
      * @return Response
      */
-    public function register(UserPasswordEncoderInterface $passwordEncoder, Request $request): Response
+    public function register(
+        UserPasswordEncoderInterface $passwordEncoder,
+        Request $request,
+        EventDispatcherInterface $dispatcher,
+        TokenGenerator $tokenGenerator
+    ): Response
     {
         $user = new User();
 
@@ -33,10 +45,14 @@ class RegisterController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setConfirmationToken($tokenGenerator->getRandomSecureToken(25));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $event = new UserRegisterEvent($user);
+            $dispatcher->dispatch(UserRegisterEvent::NAME, $event);
 
             $this->redirect('micro_post_index');
         }

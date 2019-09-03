@@ -101,7 +101,6 @@ class MicroPostController
             $posts = $this->microPostRepository->findBy([],['time' => 'DESC']);
         }
 
-
         $response = $this->twig->render('micro-post/index.html.twig', [
             'posts' => $posts,
             'usersToFollow' => $usersToFollow,

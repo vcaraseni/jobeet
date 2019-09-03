@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -22,7 +22,7 @@
         </div>
         <hr>
         <div>
-            <p>Followers</p>
+            <h5>{{ 'Followers'|transchoice(user.followers|length) }}</h5>
             <h4>
                 {% for folower in user.followers %}
                     <small>@{{ folower.username }} |</small>
@@ -30,7 +30,7 @@
             </h4>
         </div>
         <div>
-            <p>Following</p>
+            <h5>{{ 'Following'|transchoice(user.following|length) }}</h5>
             <h4>
                 {% for folower in user.following %}
                     <small>@{{ folower.username }} |</small>

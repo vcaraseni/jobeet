@@ -1,0 +1,8 @@
+<div>
+    <a href="{{ path('micro_post_show', {'id': post.id}) }}">{{ post.text }}</a>
+    <br>
+    <a href="{{ path('micro_post_user', {username: post.user.username}) }}">
+        <strong>@{{ post.user.username }}</strong>
+    </a>
+    <small>{{ post.time|date("d:m:Y") }}</small>
+</div>

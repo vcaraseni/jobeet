@@ -24,7 +24,7 @@ abstract class Notification
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      *
      * @var User
      */

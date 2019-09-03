@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity(fields="email", message="This e-mail is already used")
  * @UniqueEntity(fields="username", message="This username is already used")
  */
-class User implements UserInterface, \Serializable
+class User implements AdvancedUserInterface, \Serializable
 {
     public const ROLE_USER = 'ROLE_USER';
     public const ROLE_ADMIN = 'ROLE_ADMIN';
@@ -113,6 +113,20 @@ class User implements UserInterface, \Serializable
     private $following;
 
     /**
+     * @ORM\Column(name="confirmation_token", type="string", nullable=true, length=30)
+     *
+     * @var string
+     */
+    private $confirmationToken;
+
+    /**
+     * @ORM\Column(name="enabled", type="boolean")
+     *
+     * @var bool
+     */
+    private $enabled;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\MicroPost", mappedBy="likedBy")
      *
      * @var MicroPost[]
@@ -120,14 +134,20 @@ class User implements UserInterface, \Serializable
     private $postsLike;
 
     /**
-     * User constructor.
+     * @ORM\OneToOne(targetEntity="App\Entity\UserPreferences", cascade={"persist"})
+     *
+     * @var UserPreferences
      */
+    private $preferences;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->following = new ArrayCollection();
         $this->postsLike = new ArrayCollection();
+        $this->roles = [self::ROLE_USER];
+        $this->enabled = false;
     }
 
     /**
@@ -286,7 +306,8 @@ class User implements UserInterface, \Serializable
         return serialize([
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->enabled
         ]);
     }
 
@@ -317,7 +338,7 @@ class User implements UserInterface, \Serializable
      */
     public function unserialize($serialized)
     {
-        list($this->id, $this->username, $this->password) = unserialize($serialized);
+        list($this->id, $this->username, $this->password, $this->enabled) = unserialize($serialized);
     }
 
     /**
@@ -348,5 +369,77 @@ class User implements UserInterface, \Serializable
         }
 
         $this->getFollowing()->add($user);
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmationToken(): string
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param string $confirmationToken
+     */
+    public function setConfirmationToken(string $confirmationToken): void
+    {
+        $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return bool|void
+     */
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool|void
+     */
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    /**
+     * @return bool|void
+     */
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    /**
+     * @return UserPreferences|null
+     */
+    public function getPreferences(): ?UserPreferences
+    {
+        return $this->preferences;
+    }
+
+    /**
+     * @param UserPreferences $preferences
+     */
+    public function setPreferences(UserPreferences $preferences): void
+    {
+        $this->preferences = $preferences;
     }
 }

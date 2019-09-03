@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\UserPreferences;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\MicroPost;
@@ -51,7 +52,12 @@ class AppFixtures extends Fixture
         'What are you up to today?',
         'Did you watch the game yesterday?',
         'How was your day?'
-    ]; 
+    ];
+
+    private const LANGUAGES = [
+        'en',
+        'fr'
+    ];
 
     /** @var UserPasswordEncoderInterface */
     private $passwordEncoder;
@@ -73,7 +79,7 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-	$this->loadUsers($manager);
+	    $this->loadUsers($manager);
         $this->loadMicroPosts($manager);
     }
 
@@ -86,7 +92,7 @@ class AppFixtures extends Fixture
      */
     public function loadMicroPosts(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $microPost = new MicroPost();
 
             $microPost->setText(self::POST_TEXT[random_int(0, count(self::POST_TEXT) - 1)]);
@@ -120,7 +126,13 @@ class AppFixtures extends Fixture
             $user->setPassword(
                 $this->passwordEncoder->encodePassword($user,$userData['password'])
             );
+            $user->setEnabled(true);
             $this->addReference($userData['username'], $user);
+
+            $preferences = new UserPreferences();
+            $preferences->setLocale(self::LANGUAGES[rand(0,1)]);
+
+            $user->setPreferences($preferences);
 
             $manager->persist($user);
         }

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Notification;
 use App\Repository\NotificationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -36,11 +38,49 @@ class NotificationController extends AbstractController
      */
     public function unreadCount(): JsonResponse
     {
-        dd($this->notificationRepository->findUnseenByUser($this->getUser()));
         return new JsonResponse([
             'count' => $this->notificationRepository->findUnseenByUser($this->getUser())
         ]);
     }
 
+    /**
+     * @Route("/all", name="notification_all")
+     */
+    public function notification()
+    {
+        return $this->render('notification/notifications.html.twig', [
+            'notifications' => $this->notificationRepository->findBy([
+                'seen' => false,
+                'user' => $this->getUser(),
+            ])
+        ]);
+    }
 
+    /**
+     * @Route("/acknowledge/{id}", name="notification_acknowledge")
+     *
+     * @param Notification $notification
+     *
+     * @return RedirectResponse
+     */
+    public function acknowledge(Notification $notification): RedirectResponse
+    {
+        $notification->setSeen(true);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('notification_all');
+    }
+
+    /**
+     * @Route("/acknowledge-all", name="notification_acknowledge_all")
+     *
+     * @return RedirectResponse
+     */
+    public function acknowledgeAll(): RedirectResponse
+    {
+        $this->notificationRepository->markAllAsReadByUser($this->getUser());
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('notification_all');
+    }
 }
