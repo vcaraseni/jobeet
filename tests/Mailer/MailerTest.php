@@ -38,7 +38,7 @@ class MailerTest extends TestCase
         $swiftMailerMock->expects($this->once())->method('send')
             ->with($this->callback(function ($subject) use($user) {
                 $messageStr = (string)$subject;
-dump($messageStr);
+
                 return strpos($messageStr, 'From: lol@enauk.com') !== false
                     && strpos($messageStr, 'Content-Type: text/html; charset=utf-8') !== false
                     && strpos($messageStr, 'Subject: Welcome') !== false
