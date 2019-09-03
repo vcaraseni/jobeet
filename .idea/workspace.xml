@@ -1,51 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd05ba58-a36e-49e9-b633-46111f87c401" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Event/UserRegisterEvent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventListener/LikeNotificationSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/LocaleSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/UserLocaleSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/UserSubscriber.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Mailer/Mailer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Twig/AppExtension.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/email/registration.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/micro-post/raw-post.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/notification/notifications.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/confirmation.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Mailer/MailerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Security/TokenGeneratorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7184b16f-61be-443a-88b4-3c5f48544da1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jobeet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jobeet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/translation.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LikesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LikesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MicroPostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MicroPostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Notification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/NotificationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/NotificationRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/micro-post/post.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/micro-post/post.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/micro-post/user-posts.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/micro-post/user-posts.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="bd05ba58-a36e-49e9-b633-46111f87c401" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,8 +263,16 @@
       <workItem from="1567365618986" duration="350000" />
       <workItem from="1567453401028" duration="4874000" />
       <workItem from="1567491452534" duration="7282000" />
-      <workItem from="1567535377277" duration="650000" />
+      <workItem from="1567535377277" duration="1074000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1567536514585</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567536514585</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,5 +290,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
 </project>
