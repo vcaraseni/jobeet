@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd05ba58-a36e-49e9-b633-46111f87c401" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MicroPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MicroPost.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -266,7 +266,7 @@
       <workItem from="1567453401028" duration="4874000" />
       <workItem from="1567491452534" duration="7282000" />
       <workItem from="1567535377277" duration="1074000" />
-      <workItem from="1570822391083" duration="994000" />
+      <workItem from="1570822391083" duration="1233000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1567536514585</created>
@@ -275,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567536514585</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first commit from mac">
+      <created>1570824456700</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570824456700</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +303,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="first commit from mac" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit from mac" />
   </component>
 </project>
