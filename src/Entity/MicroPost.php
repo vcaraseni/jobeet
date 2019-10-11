@@ -22,6 +22,7 @@ class MicroPost
     private $id;
 
     /**
+     * //
      * @ORM\Column(type="string", length=280)
      * @Assert\NotBlank()
      * @Assert\Length(min="10", max="280", minMessage="Tоо few", maxMessage="Too much")
